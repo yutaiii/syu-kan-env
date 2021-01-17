@@ -1,0 +1,40 @@
+version: '3'
+services:
+
+  syu-kan-front:
+    build: ../app/frontend/docker
+    container_name: syu-kan-frontend
+    tty: true
+    volumes:
+    - ../app/frontend/:/app
+    ports:
+      - "8080:8080"
+    command: >
+      ash -c "yarn install &&
+        yarn serve"
+
+  syu-kan-backend:
+    build: ../app/backend/docker
+    container_name: syu-kan-backend
+    tty: true
+    ports:
+      - "8000:8000"
+    volumes:
+    - ../app/backend/:/go/src/github.com/yutaiii/syu-kan-backend
+    working_dir: /go/src/github.com/yutaiii/syu-kan-backend/
+    command: realize start --run
+    # links:
+    #   - command-box-db
+
+  syu-kan-db:
+    image: mysql:5.7
+    container_name: syu-kan-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: syu-kan
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./db/data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
