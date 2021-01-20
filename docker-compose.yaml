@@ -31,7 +31,7 @@ services:
     container_name: syu-kan-db
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: syu-kan
+      MYSQL_DATABASE: syu_kan
       TZ: 'Asia/Tokyo'
     volumes:
       - ./db/data:/var/lib/mysql
