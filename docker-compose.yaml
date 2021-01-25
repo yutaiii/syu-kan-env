@@ -20,7 +20,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-    - ../app/backend/github.com/yutaiii/syu-kan-backend/:/go/src/github.com/yutaiii/syu-kan-backend
+    - ../app/backend/:/go/src/github.com/yutaiii/syu-kan-backend
     working_dir: /go/src/github.com/yutaiii/syu-kan-backend/
     command: realize start --run
     # links:
