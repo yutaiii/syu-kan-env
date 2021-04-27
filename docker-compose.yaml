@@ -25,8 +25,12 @@ services:
     command: realize start --run
 
   syu-kan-db:
-    image: mysql:5.7
+    image: mariadb:10.5.9
+    # for m1 mac
+    # image: mysql:5.7
     container_name: syu-kan-db
+    # for m1 mac
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: syu_kan
